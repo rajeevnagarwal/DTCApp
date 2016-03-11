@@ -95,7 +95,7 @@ public class Main extends AppCompatActivity
 
         } else if (id == R.id.nav_map) {
             Map obj = new Map();
-            getSupportFragmentManager().beginTransaction().replace(R.id.content,obj).commit();
+            getFragmentManager().beginTransaction().replace(R.id.content,obj).commit();
 
         } else if (id == R.id.nav_share) {
 
