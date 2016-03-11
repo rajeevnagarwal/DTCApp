@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class Main extends AppCompatActivity
+    
         implements Payment.OnFragmentInteractionListener, Destination.OnFragmentInteractionListener, Map.OnFragmentInteractionListener, Recommendation.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
 
     @Override
