@@ -34,7 +34,6 @@ public class Map extends Fragment implements OnMapReadyCallback{
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private GoogleMap mMap ;
     private OnFragmentInteractionListener mListener;
     private SupportMapFragment supportMapFragment;
     private MapFragment mp;
@@ -125,7 +124,8 @@ public class Map extends Fragment implements OnMapReadyCallback{
         try
         {
             map.setMyLocationEnabled(true);
-            mMap = map;
+            map.setBuildingsEnabled(true);
+            map.setIndoorEnabled(true);
         }
         catch(SecurityException e){
             System.out.println("Hello");
@@ -133,17 +133,6 @@ public class Map extends Fragment implements OnMapReadyCallback{
 
 
 
-    }
-
-    public void onDestroyView()
-    {
-        super.onDestroyView();
-        MapFragment mapFragment = (MapFragment) getActivity()
-                .getFragmentManager().findFragmentById(R.id.map);
-        if(mapFragment!=null)
-        {
-            getActivity().getFragmentManager().beginTransaction().remove(mapFragment).commit();
-        }
     }
 
 
