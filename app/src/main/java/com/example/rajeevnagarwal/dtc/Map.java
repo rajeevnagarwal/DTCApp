@@ -3,7 +3,8 @@ package com.example.rajeevnagarwal.dtc;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.*;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,8 @@ public class Map extends Fragment implements OnMapReadyCallback{
     private String mParam2;
     private OnFragmentInteractionListener mListener;
     private SupportMapFragment supportMapFragment;
-    private MapFragment mp;
+    private GoogleMap mMap;
+    //private MapFragment mp;
 
     public Map() {
         // Required empty public constructor
@@ -75,10 +77,11 @@ public class Map extends Fragment implements OnMapReadyCallback{
                              Bundle savedInstanceState)  {
         // Inflate the layout for this fragment
 
-        View v = inflater.inflate(R.layout.fragment_map,container,false);
-
-        mp = (MapFragment)getChildFragmentManager().findFragmentById(R.id.map);
-        mp.getMapAsync(this);
+        View v = inflater.inflate(R.layout.fragment_map, container, false);
+        supportMapFragment = SupportMapFragment.newInstance();
+        supportMapFragment.getMapAsync(this);
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.add(R.id.map_container,supportMapFragment).commit();
         return v;
     }
 
@@ -120,12 +123,19 @@ public class Map extends Fragment implements OnMapReadyCallback{
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+    public void onDestroyView()
+    {
+        super.onDestroyView();
+    }
+
     public void onMapReady(GoogleMap map) {
         try
         {
+
             map.setMyLocationEnabled(true);
             map.setBuildingsEnabled(true);
             map.setIndoorEnabled(true);
+            map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         }
         catch(SecurityException e){
             System.out.println("Hello");
