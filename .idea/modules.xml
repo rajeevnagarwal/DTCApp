@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DTC.iml" filepath="$PROJECT_DIR$/DTC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DTCApp.iml" filepath="$PROJECT_DIR$/DTCApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

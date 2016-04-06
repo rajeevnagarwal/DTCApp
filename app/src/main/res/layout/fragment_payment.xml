@@ -6,8 +6,27 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="20dp"
+        android:textSize="40dp"
         android:text="Payment" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Please use Follow Information\nPhone Number: 7777777777\nPassword: Paytm12345\n OTP Code:489871"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay Rs.1"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="60dp"
+        android:id="@+id/pay_button"
+        />
 
 </FrameLayout>
