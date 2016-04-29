@@ -42,6 +42,15 @@
         android:layout_marginLeft="50dp"
         android:id="@+id/txtview"
         android:textSize="20dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Payment"
+        android:layout_marginLeft="0dp"
+        android:layout_gravity="left|bottom"
+        android:layout_marginBottom="0dp"
+        android:id="@+id/pay"
+        />
 
 
 

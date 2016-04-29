@@ -62,6 +62,10 @@
         <activity
             android:name=".SPMap"
             android:label="@string/title_activity_spmap"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Ticket"
+            android:label="@string/title_activity_ticket"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

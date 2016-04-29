@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,6 +28,7 @@ public class SPMap extends AppCompatActivity {
 
     public TextView txt;
     MapFragment googleMap;
+    public Button pay1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,9 +82,11 @@ public class SPMap extends AppCompatActivity {
         }
 
         final ArrayList<Node> S = Z.sp(x, y);
+        final Integer Cost = Z.Cost(x,y);
 
         for(int j=0;j<S.size();j++)
             System.out.println(S.get(j).getName());
+
         try
         {
             if(googleMap==null)
@@ -114,6 +118,18 @@ public class SPMap extends AppCompatActivity {
         {
             System.out.println("hello1");
         }
+        pay1 = (Button)findViewById(R.id.pay);
+        pay1.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent i = new Intent(SPMap.this,Ticket.class);
+                i.putExtra("Cost",Cost);
+                System.out.println(Cost);
+                startActivity(i);
+            }
+
+        });
 
 
 

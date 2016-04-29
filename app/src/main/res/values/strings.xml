@@ -14,5 +14,6 @@
     <string name="google_maps_key" templateMergeStrategy="preserve">AIzaSyC85yHpJQwW080Gz0dasq2efbVV9FjRbNM</string>
     <string name="google_app_id">dev-truth-121909</string>
     <string name="title_activity_spmap">SPMap</string>
+    <string name="title_activity_ticket">Ticket</string>
 
 </resources>

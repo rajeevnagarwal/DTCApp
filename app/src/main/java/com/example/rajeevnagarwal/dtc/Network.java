@@ -62,6 +62,29 @@ public class Network {
 			
 		return S;
 	}
+	public Integer Cost(Node src, Node dest)
+	{
+		ArrayList<Node> S = sp(src,dest);
+		double d = S.get(S.size()-1).dist.getValue();
+		if(S.get(S.size()-1).dist.getUnit().equals("km"))
+		{
+			d = d*1000;
+		}
+		if(d<400)
+		{
+			return 5;
+		}
+		else if(d<800)
+		{
+			return 10;
+		}
+		else
+		{
+			return 15;
+		}
+
+	}
+
 	
 	private void dijkstra(Node src)
 	{
