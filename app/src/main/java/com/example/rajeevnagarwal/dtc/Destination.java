@@ -1,6 +1,7 @@
 package com.example.rajeevnagarwal.dtc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -26,6 +32,7 @@ public class Destination extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     Spinner spin;
     Spinner spin2;
+    Button submit;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -69,11 +76,34 @@ public class Destination extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_destination, container, false);
-        String[] values={"A","B","C"};
+        final FrameLayout ly = (FrameLayout)rootView.findViewById(R.id.frm);
+        ArrayList<String> values = new ArrayList<String>();
+        values.add("a Govind Puri");
+        values.add("a Kalkaji Depot");
+        values.add("a C Lal Chowk");
+        values.add("b Okhla Industrial Area");
+        values.add("b Kalkaji Depot");
+        values.add("b Govind Puri");
+
         spin = (Spinner)rootView.findViewById(R.id.spinner);
+        submit = (Button)rootView.findViewById(R.id.Submit);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_item,values);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spin.setAdapter(adapter);
+        spin2 = (Spinner)rootView.findViewById(R.id.spinner2);
+        spin2.setAdapter(adapter);
+        submit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),SPMap.class);
+                i.putExtra("From",spin.getSelectedItem().toString());
+                i.putExtra("To",spin2.getSelectedItem().toString());
+                getActivity().startActivity(i);
+
+
+            }
+
+        });
+
         return rootView;
     }
 
