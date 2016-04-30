@@ -2,12 +2,14 @@ package com.example.rajeevnagarwal.dtc;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -77,26 +79,59 @@ public class Destination extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_destination, container, false);
         final FrameLayout ly = (FrameLayout)rootView.findViewById(R.id.frm);
-        ArrayList<String> values = new ArrayList<String>();
+        final ArrayList<String> values = new ArrayList<String>();
+        values.add(" ");
         values.add("a Govind Puri");
         values.add("a Kalkaji Depot");
-        values.add("a C Lal Chowk");
-        values.add("b Okhla Industrial Area");
+       // values.add("a C Lal Chowk");
+        //values.add("b Okhla Industrial Area");
         values.add("b Kalkaji Depot");
         values.add("b Govind Puri");
+        values.add("b C Lal Chowk");
 
         spin = (Spinner)rootView.findViewById(R.id.spinner);
+        spin2 = (Spinner) rootView.findViewById(R.id.spinner2);
         submit = (Button)rootView.findViewById(R.id.Submit);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_item,values);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_item,values);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
-        spin2 = (Spinner)rootView.findViewById(R.id.spinner2);
-        spin2.setAdapter(adapter);
+        final ArrayList<String> values1 = new ArrayList<String>();
+        values1.add(" ");
+        final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_item,values1);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin2.setAdapter(adapter1);
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                values1.clear();
+                String obj = (String) spin.getSelectedItem();
+                if(!obj.equals(" ")) {
+                    for (int i = 0; i < values.size(); i++) {
+                        if (!obj.toString().equals(values.get(i))) {
+                            values1.add(values.get(i));
+
+                        }
+                    }
+                    values1.add("a C Lal Chowk");
+                    values1.add("b Okhla Industrial Area");
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(),SPMap.class);
-                i.putExtra("From",spin.getSelectedItem().toString());
-                i.putExtra("To",spin2.getSelectedItem().toString());
+                Intent i = new Intent(getActivity(), SPMap.class);
+                i.putExtra("From", spin.getSelectedItem().toString());
+                i.putExtra("To", spin2.getSelectedItem().toString());
                 getActivity().startActivity(i);
 
 

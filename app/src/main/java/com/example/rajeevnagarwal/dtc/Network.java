@@ -66,10 +66,15 @@ public class Network {
 	{
 		ArrayList<Node> S = sp(src,dest);
 		double d = S.get(S.size()-1).dist.getValue();
+		if(d==Double.MAX_VALUE)
+		{
+			return 0;
+		}
 		if(S.get(S.size()-1).dist.getUnit().equals("km"))
 		{
 			d = d*1000;
 		}
+
 		if(d<400)
 		{
 			return 5;

@@ -27,6 +27,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="90dp"
         android:layout_marginLeft="90dp"
+        android:spinnerMode="dropdown"
         android:id="@+id/spinner"
         android:prompt="@string/spin"
         android:layout_gravity="center_horizontal|top" />
@@ -36,6 +37,7 @@
         android:layout_height="48dp"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="10dp"
+        android:spinnerMode="dropdown"
         android:id="@+id/spinner2"
         android:prompt="@string/spin2"
         android:layout_gravity="center" />
