@@ -95,16 +95,23 @@ public class SPMap extends AppCompatActivity {
                 googleMap.getMapAsync(new OnMapReadyCallback() {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
-                       for(int j=0;j<S.size();j++)
-                       {
+                        if(Cost!=0) {
+                            for (int j = 0; j < S.size(); j++) {
 
 
-                          googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).position(new LatLng(S.get(j).getLocation().getLatitude(), S.get(j).getLocation().getLongitude())).title(S.get(j).getName()));
-                          googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(S.get(j).getLocation().getLatitude(), S.get(j).getLocation().getLongitude()), 20));
+                                googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).position(new LatLng(S.get(j).getLocation().getLatitude(), S.get(j).getLocation().getLongitude())).title(S.get(j).getName()));
+                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(S.get(j).getLocation().getLatitude(), S.get(j).getLocation().getLongitude()), 20));
 
-                          if(j<S.size()-1)
-                           googleMap.addPolyline(new PolylineOptions().add(new LatLng(S.get(j).getLocation().getLatitude(), S.get(j).getLocation().getLongitude()),new LatLng(S.get(j+1).getLocation().getLatitude(), S.get(j+1).getLocation().getLongitude())).width(10).color(Color.RED).geodesic(true));
-                       }
+                                if (j < S.size() - 1)
+                                    googleMap.addPolyline(new PolylineOptions().add(new LatLng(S.get(j).getLocation().getLatitude(), S.get(j).getLocation().getLongitude()), new LatLng(S.get(j + 1).getLocation().getLatitude(), S.get(j + 1).getLocation().getLongitude())).width(10).color(Color.RED).geodesic(true));
+                            }
+                        }
+                        else
+                        {
+                            googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).position(new LatLng(S.get(S.size()-1).getLocation().getLatitude(), S.get(S.size()-1).getLocation().getLongitude())).title(S.get(S.size()-1).getName()+"\nPath does not exist"));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(S.get(S.size()-1).getLocation().getLatitude(), S.get(S.size()-1).getLocation().getLongitude()), 20));
+
+                        }
 
 
 
