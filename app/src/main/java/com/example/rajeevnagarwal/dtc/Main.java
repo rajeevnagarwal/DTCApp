@@ -1,5 +1,7 @@
 package com.example.rajeevnagarwal.dtc;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,10 +17,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.provider.Settings.Secure;
+import android.widget.TextView;
+
+import com.google.android.gms.maps.model.LatLng;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
 
 public class Main extends AppCompatActivity
     
-        implements Payment.OnFragmentInteractionListener, Destination.OnFragmentInteractionListener, Map.OnFragmentInteractionListener, Recommendation.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
+        implements Payment.OnFragmentInteractionListener, Destination.OnFragmentInteractionListener, Map.OnFragmentInteractionListener, Recommendation.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener , inter_Dest_map{
 
     static String mobileNumber;
     static String androidId;
@@ -29,6 +37,7 @@ public class Main extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         TelephonyManager tm = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
         mobileNumber = tm.getLine1Number();
@@ -52,8 +61,31 @@ public class Main extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Main.setDefaultFont(this,"MONOSPACE","fonts/IndieFlower.ttf");
+
     }
 
+    public static void setDefaultFont(Context context,
+                                      String staticTypefaceFieldName, String fontAssetName) {
+        final Typeface regular = Typeface.createFromAsset(context.getAssets(),
+                fontAssetName);
+        replaceFont(staticTypefaceFieldName, regular);
+    }
+    protected static void replaceFont(String staticTypefaceFieldName,
+                                      final Typeface newTypeface) {
+        try {
+            final Field staticField = Typeface.class
+                    .getDeclaredField(staticTypefaceFieldName);
+            staticField.setAccessible(true);
+
+            staticField.set(null, newTypeface);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -121,6 +153,22 @@ public class Main extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+
+
+    }
+
+    @Override
+    public void fragmentInteraction(HashMap<String, LatLng> pos) {
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("destination",pos.get("destination"));
+        bundle.putString("temp","fuck you");
+
+        Map obj = new Map();
+        obj.setArguments(bundle);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content,obj).commit();
 
     }
 }

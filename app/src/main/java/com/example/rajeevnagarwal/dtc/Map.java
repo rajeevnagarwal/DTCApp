@@ -9,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
@@ -38,6 +40,8 @@ public class Map extends Fragment implements OnMapReadyCallback{
     private OnFragmentInteractionListener mListener;
     private SupportMapFragment supportMapFragment;
     private GoogleMap mMap;
+    private LatLng destination;
+
     //private MapFragment mp;
 
     public Map() {
@@ -76,6 +80,11 @@ public class Map extends Fragment implements OnMapReadyCallback{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)  {
         // Inflate the layout for this fragment
+
+
+        if( this.getArguments()!=null && this.getArguments().containsKey("destination"))
+            destination = this.getArguments().getParcelable("destination");
+
 
         View v = inflater.inflate(R.layout.fragment_map, container, false);
         supportMapFragment = SupportMapFragment.newInstance();
@@ -133,9 +142,13 @@ public class Map extends Fragment implements OnMapReadyCallback{
         {
 
             map.setMyLocationEnabled(true);
+
+            if(destination!=null)
+                destinationSet(map,destination);
+
             map.setBuildingsEnabled(true);
             map.setIndoorEnabled(true);
-            map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+            map.setMapType(GoogleMap.MAP_TYPE_NORMAL);;
         }
         catch(SecurityException e){
             System.out.println("Hello");
@@ -144,6 +157,15 @@ public class Map extends Fragment implements OnMapReadyCallback{
 
 
     }
+
+    public void destinationSet(GoogleMap map,LatLng point)
+    {
+
+        map.addMarker(new MarkerOptions().position(point).title("Destination"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(point));
+        map.animateCamera(CameraUpdateFactory.zoomTo(14));
+    }
+
 
 
 
