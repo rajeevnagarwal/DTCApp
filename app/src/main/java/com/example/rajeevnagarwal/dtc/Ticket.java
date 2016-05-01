@@ -14,6 +14,8 @@ public class Ticket extends AppCompatActivity {
 
     public TextView Cost1;
     public Button pay1;
+
+    public static int cost=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,13 +25,17 @@ public class Ticket extends AppCompatActivity {
         Integer C = (i.getExtras().getInt("Cost"));
         Cost1 = (TextView)findViewById(R.id.Cost);
         Cost1.setText("Your total fare is Rs."+C.toString());
+
+        Ticket.cost=C;
+
         pay1.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
-                Intent i = new Intent(Ticket.this,Main.class);
-                startActivity(i);
-            }
+     /*           Payment obj = new Payment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content,obj).commit();
+
+       */     }
 
         });
 

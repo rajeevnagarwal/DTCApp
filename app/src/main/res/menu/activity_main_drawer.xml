@@ -5,18 +5,22 @@
         <item
             android:id="@+id/nav_payment"
             android:icon="@drawable/ic_menu_camera"
+
             android:title="Make Payment" />
         <item
             android:id="@+id/nav_destination"
             android:icon="@drawable/ic_menu_gallery"
+
             android:title="Choose Destination" />
         <item
             android:id="@+id/nav_recommendation"
             android:icon="@drawable/ic_menu_slideshow"
+
             android:title="Our Recommendations" />
         <item
             android:id="@+id/nav_map"
             android:icon="@drawable/ic_menu_manage"
+
             android:title="Map" />
     </group>
 

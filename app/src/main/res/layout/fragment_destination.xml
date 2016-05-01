@@ -20,6 +20,7 @@
         android:layout_marginLeft="50dp"
         android:text="To"
         android:layout_gravity="left|center_vertical"
+        android:textAppearance="@android:color/black"
         android:textSize="20dp" />
 
     <Spinner
